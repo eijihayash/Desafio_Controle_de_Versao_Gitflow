@@ -7,3 +7,9 @@ __pycache__/
 
 # Configurações do vscode
 .vscode/
+
+#pasta
+notebook/
+
+#arquivo
+teste.py
