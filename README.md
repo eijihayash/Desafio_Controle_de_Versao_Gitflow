@@ -20,7 +20,7 @@ Certifique-se de possuir o Python 3.8 instalado. Caso utilize gestores de versã
 1. Clone o repositório:
 
     ```bash
-        git clone <repository-url>
+        git clone <url>
     ```
 
 2. Crie e ative o ambiente virtual:
@@ -56,6 +56,8 @@ A classe Pipeline gerencia o ciclo de vida dos dados através de estados interno
  - **Extração**: Realiza a requisição HTTP e armazena o conteúdo bruto no atributo raw_data.
 
  - **Transformação**: Processa o dado bruto, realiza a limpeza (deduplicação e tratamento de nulos) e armazena o resultado em um objeto DataFrame no atributo dados_tabular.
+
+ - **Carregamento**: Permite os dados processados em um arquivo físico no formato `.csv`, garantindo a integridade codificação (`utf-8`).
 
 ## Testes e Validação
 É obrigatória a execução e passagem dos testes antes da abertura de qualquer Pull Request para a branch develop.
