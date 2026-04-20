@@ -1,12 +1,16 @@
 import requests
+import pandas as pd
+from io import StringIO
 
 class Pipeline:
 
     def __init__(self, url) -> None:
         self.url = url
         self.session = requests.Session()
-    
-    def extrair_url(self) -> str:
+        self.raw_data = None
+        self.dados_tabular = None
+
+    def extrair_url(self) -> None:
         try:
             #Requisição com timeout.
             response = self.session.get(self.url, timeout=10)
@@ -16,7 +20,10 @@ class Pipeline:
             response.raise_for_status()
 
             #retorna o texto bruto
-            return response.text
+            self.raw_data = response.text
+            print("Extração bem-sucedida e salva em self.raw_data.")
+
+            return True
 
         except requests.exceptions.HTTPError as errh:
             print(f'Erro HTTP: {errh}')
@@ -27,5 +34,27 @@ class Pipeline:
         except requests.exceptions.RequestException as err:
             print(f'Erro inesperado: {err}')
 
-        return ""
+        return False
+
+    def transformar_dados(self) -> pd.DataFrame:
+        
+        if self.raw_data is None:
+            print("Erro: Não há dados para transformar. Execute extrair_url primeiro.")
+            return False
+        
+        try:
+            df = pd.read_csv(StringIO(self.raw_data))
+            
+            # Exemplo de transformação: Remover duplicatas e valores nulos
+            df_limpo = df.drop_duplicates().dropna(how='all')
+            
+            print(f"Transformação concluída: {len(df_limpo)} linhas processadas.")
+            print("Salva em self.dados_tabular.")
+            self.dados_tabular = df_limpo
+            return True
+        
+        except Exception as e:
+            print(f"Erro ao processar DataFrame: {e}")
+            return False
+
 
