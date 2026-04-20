@@ -11,23 +11,28 @@ def teste_pipeline():
 
     # 1 Teste - Extração
     sucesso_extracao = dado_saude.extrair_url()
-    assert sucesso_extracao is True, "Erro: não é possível baixar os dados da URL"
-    assert dado_saude.raw_data is not None, "raw_data está vazio após extração"
+    assert sucesso_extracao is True, "Erro: não é possível baixar os dados da URL."
+    assert dado_saude.raw_data is not None, "raw_data está vazio após extração."
 
     # 2 Teste - Transformação
     sucesso_transformacao = dado_saude.transformar_dados()
     assert sucesso_transformacao is True, "Falha na lógiva de tranformação dos dados, favor revisar."
 
     # 3 Validar conteúdo do DataFrame
-    assert dado_saude.dados_tabular is not None, "O atributo dados_tabular não deveria ser None"
+    assert dado_saude.dados_tabular is not None, "O atributo dados_tabular não deveria ser None."
     assert not dado_saude.dados_tabular.empty, "O DataFrame resultou vazio."
 
-    # 4 Validar salvar em formato csv
+    # 4 Validar Estatística
+    resumo = dado_saude.obter_estatisticas()
+    assert isinstance(resumo,dict), "Erro: O retorno das estatísticas deve ser um dicionário."
+    assert resumo["total_linhas"] > 0, "Erro: O relatório indica 0 linhas processados."
+
+    # 5 Validar salvar em formato csv
     nome_saida = 'arquivo_csv'
     assert dado_saude.salvar_csv(nome_saida) is True, "Falha n ao salvar em arquivo csv, favor revisar."
     print("Pipeline testada!")
     
-    # 5 Remover o arquivo criado após o teste
+    # 6 Remover o arquivo criado após o teste
     nome_saida = nome_saida + '.csv'
     if os.path.exists(nome_saida):
         os.remove(nome_saida)
