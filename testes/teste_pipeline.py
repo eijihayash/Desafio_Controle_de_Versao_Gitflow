@@ -22,8 +22,16 @@ def teste_pipeline():
     assert dado_saude.dados_tabular is not None, "O atributo dados_tabular não deveria ser None"
     assert not dado_saude.dados_tabular.empty, "O DataFrame resultou vazio."
 
+    # 4 Validar salvar em formato csv
+    nome_saida = 'arquivo_csv'
+    assert dado_saude.salvar_csv(nome_saida) is True, "Falha n ao salvar em arquivo csv, favor revisar."
     print("Pipeline testada!")
     
+    # 5 Remover o arquivo criado após o teste
+    nome_saida = nome_saida + '.csv'
+    if os.path.exists(nome_saida):
+        os.remove(nome_saida)
+
 if __name__ == "__main__":
     teste_pipeline()
 
