@@ -10,7 +10,7 @@ class Pipeline:
         self.raw_data = None
         self.dados_tabular = None
 
-    def extrair_url(self) -> None:
+    def extrair_url(self) -> bool:
         try:
             #Requisição com timeout.
             response = self.session.get(self.url, timeout=10)
@@ -36,7 +36,7 @@ class Pipeline:
 
         return False
 
-    def transformar_dados(self) -> pd.DataFrame:
+    def transformar_dados(self) -> bool:
         
         if self.raw_data is None:
             print("Erro: Não há dados para transformar. Execute extrair_url primeiro.")
@@ -57,4 +57,17 @@ class Pipeline:
             print(f"Erro ao processar DataFrame: {e}")
             return False
 
+    def salvar_csv(self, nome_arquivo: str) -> bool:
+        if self.dados_tabular is None:
+            print("Aviso: DataFrame vazio. Nada será salvo.")
+            return False
+        
+        nome_arquivo += '.csv'
 
+        try:
+            self.dados_tabular.to_csv(nome_arquivo, encoding='utf-8', index=False)
+            print(f"Arquivo salvo com sucesso: {nome_arquivo}")
+            return True
+        except Exception as e:
+            print(f"Erro ao salvar o arquivo: {e}")
+            return False
