@@ -4,7 +4,7 @@ from io import StringIO
 
 class Pipeline:
 
-    def __init__(self, url) -> None:
+    def __init__(self, url: str) -> None:
         self.url = url
         self.session = requests.Session()
         self.raw_data = None
