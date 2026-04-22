@@ -4,7 +4,7 @@ from io import StringIO
 
 class Pipeline:
 
-    def __init__(self, url) -> None:
+    def __init__(self, url: str) -> None:
         self.url = url
         self.session = requests.Session()
         self.raw_data = None
@@ -56,7 +56,20 @@ class Pipeline:
         except Exception as e:
             print(f"Erro ao processar DataFrame: {e}")
             return False
-
+    
+    def obter_estatisticas(self) -> dict:
+        if self.dados_tabular is None:
+            print("Erro: Dados não processado")
+            return False
+        
+        resumo = {
+            "total_linhas": len(self.dados_tabular),
+            "colunas": list(self.dados_tabular.columns),
+            "memorica_usada": f"{self.dados_tabular.memory_usage(deep=True).sum() / 1024:.2f} KB"
+        }
+        print(f"Resumo do Pipeline: {resumo['total_linhas']} registros processados.")
+        return resumo
+    
     def salvar_csv(self, nome_arquivo: str) -> bool:
         if self.dados_tabular is None:
             print("Aviso: DataFrame vazio. Nada será salvo.")

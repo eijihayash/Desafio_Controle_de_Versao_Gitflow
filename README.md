@@ -57,6 +57,8 @@ A classe Pipeline gerencia o ciclo de vida dos dados através de estados interno
 
  - **Transformação**: Processa o dado bruto, realiza a limpeza (deduplicação e tratamento de nulos) e armazena o resultado em um objeto DataFrame no atributo dados_tabular.
 
+ - **Monitoramento**: Gera métricas estatíticas e volumétricas sobre o processamento.
+
  - **Carregamento**: Permite os dados processados em um arquivo físico no formato `.csv`, garantindo a integridade codificação (`utf-8`).
 
 ## Testes e Validação
