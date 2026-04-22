@@ -28,14 +28,19 @@ def teste_pipeline():
     assert resumo["total_linhas"] > 0, "Erro: O relatório indica 0 linhas processados."
 
     # 5 Validar salvar em formato csv
+
     nome_saida = 'arquivo_csv'
     assert dado_saude.salvar_csv(nome_saida) is True, "Falha ao salvar em arquivo csv, favor revisar."
+
     print("Pipeline testada!")
     
     # 6 Remover o arquivo criado após o teste
     nome_saida = nome_saida + '.csv'
+    diretorio = os.path.dirname(nome_saida)
     if os.path.exists(nome_saida):
         os.remove(nome_saida)
+        os.rmdir(diretorio)
+    
 
 if __name__ == "__main__":
     teste_pipeline()
