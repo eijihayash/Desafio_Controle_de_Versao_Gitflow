@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import os
 from io import StringIO
 
 class Pipeline:
@@ -69,6 +70,11 @@ class Pipeline:
         }
         print(f"Resumo do Pipeline: {resumo['total_linhas']} registros processados.")
         return resumo
+
+    def _garantir_diretorio(self, caminho_arquivo: str):
+        diretorio = os.path.dirname(caminho_arquivo)
+        if diretorio and not os.path.exists(diretorio):
+            os.makedirs(diretorio)
     
     def salvar_csv(self, nome_arquivo: str) -> bool:
         if self.dados_tabular is None:
@@ -76,6 +82,8 @@ class Pipeline:
             return False
         
         nome_arquivo += '.csv'
+
+        self._garantir_diretorio(nome_arquivo)
 
         try:
             self.dados_tabular.to_csv(nome_arquivo, encoding='utf-8', index=False)

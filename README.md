@@ -59,7 +59,7 @@ A classe Pipeline gerencia o ciclo de vida dos dados através de estados interno
 
  - **Monitoramento**: Gera métricas estatíticas e volumétricas sobre o processamento.
 
- - **Carregamento**: Permite os dados processados em um arquivo físico no formato `.csv`, garantindo a integridade codificação (`utf-8`).
+ - **Carregamento**: Permite os dados processados em um arquivo físico no formato `.csv`, garantindo a integridade codificação (`utf-8`) com **criação automático de diretório**.
 
 ## Testes e Validação
 É obrigatória a execução e passagem dos testes antes da abertura de qualquer Pull Request para a branch develop.
