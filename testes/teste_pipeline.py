@@ -29,7 +29,7 @@ def teste_pipeline():
 
     # 5 Validar salvar em formato csv
     nome_saida = 'arquivo_csv'
-    assert dado_saude.salvar_csv(nome_saida) is True, "Falha n ao salvar em arquivo csv, favor revisar."
+    assert dado_saude.salvar_csv(nome_saida) is True, "Falha ao salvar em arquivo csv, favor revisar."
     print("Pipeline testada!")
     
     # 6 Remover o arquivo criado após o teste
