@@ -66,7 +66,7 @@ A classe Pipeline gerencia o ciclo de vida dos dados através de estados interno
 
 Para executar a suíte de testes unitários e de integração:
 ```bash
-python -m tests.test_pipeline
+python -m testes.teste_pipeline
 ```
 As validações incluem:
 
