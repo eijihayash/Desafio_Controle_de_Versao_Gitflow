@@ -50,6 +50,7 @@ O projeto segue rigorosamente o modelo de ramificação GitFlow para garantir a 
 - Utilize Commits Semânticos:
     - `feat`: Nova funcionalidade.
     - `chore`: Atualizações de build, dependências ou ferramentas.
+    - `fix`: Correções.
 
 ## Estrutura do Pipeline
 A classe Pipeline gerencia o ciclo de vida dos dados através de estados internos:
