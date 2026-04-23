@@ -29,7 +29,7 @@ def teste_pipeline():
 
     # 5 Validar salvar em formato csv
 
-    nome_saida = 'arquivo_csv'
+    nome_saida = 'diretoriox/arquivo_csv'
     assert dado_saude.salvar_csv(nome_saida) is True, "Falha ao salvar em arquivo csv, favor revisar."
 
     print("Pipeline testada!")
@@ -39,6 +39,7 @@ def teste_pipeline():
     diretorio = os.path.dirname(nome_saida)
     if os.path.exists(nome_saida):
         os.remove(nome_saida)
+    if diretorio and os.path.exists(diretorio):
         os.rmdir(diretorio)
     
 
