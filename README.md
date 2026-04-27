@@ -1,6 +1,5 @@
 # Pipeline de Dados Público
-
-Este projeto é um pipeline de dados desenvolvido para extrair, transformar e carrega (ETL). Seguindo o fluxo **Gitflow**.
+Este projeto é um pipeline de dados desenvolvido para extrair, transformar e carregar (ETL) dados de APIs públicas. O desenvolvimento segue rigorosamente o fluxo Gitflow e as melhores práticas de engenharia de software.
 
 ## Arquitetura e Tecnologias
 A solução foi projetada utilizando Programação Orientada a Objetos (POO) para garantir a modularidade e o gerenciamento de estado entre as etapas do pipeline.
@@ -9,6 +8,18 @@ A solução foi projetada utilizando Programação Orientada a Objetos (POO) par
 - **Bibliotecas Principais**:
     - ``pandas`` (v1.5.3): Manipulação e limpeza de dados tabulares.
     - ``requests`` (v2.32.4): Interface HTTP para consumo de API.
+
+## Estrutura do Ptojeto
+
+```plaintext
+├── src/                # Código-fonte principal
+│   └── pipeline.py     # Lógica de ETL e Classe Pipeline
+├── tests/              # Testes automatizados
+│   └── test_pipeline.py
+├── .tool-versions      # Versões de ferramentas (asdf)
+├── requirements.txt    # Dependências do projeto
+└── README.md
+```
 
 ## Configuração do Ambiente
 O projeto utiliza um ambiente virtual isolado para garantir a consistência das dependências.
@@ -43,6 +54,7 @@ O projeto segue rigorosamente o modelo de ramificação GitFlow para garantir a 
 - **main**: Armazena o código estável e funcional (produção).
 - **develop**: Branch de integração para funcionalidades concluídas.
 - **feature/**: Branches temporárias para desenvolvimento de novas funcionalidades ou correções.
+- **hotfix**: Correções críticas encontradas em produção que precisam de implementação imediata, sem aguardar o ciclo normal da `develop`.
 
 #### Padrão de Contribuição
 - Atualize a branch local: git pull origin develop
@@ -50,7 +62,9 @@ O projeto segue rigorosamente o modelo de ramificação GitFlow para garantir a 
 - Utilize Commits Semânticos:
     - `feat`: Nova funcionalidade.
     - `chore`: Atualizações de build, dependências ou ferramentas.
-    - `fix`: Correções.
+    - `fix`: Correção de bugs (ex: o erro de iteração que corrigimos).
+    - `Docs`: Alterações apenas na documentação (como este README).
+    - `Refactor`: Mudanças no código que não corrigem erros nem adicionam funcionalidades.
 
 ## Estrutura do Pipeline
 A classe Pipeline gerencia o ciclo de vida dos dados através de estados internos:
@@ -67,7 +81,7 @@ A classe Pipeline gerencia o ciclo de vida dos dados através de estados interno
 
 Para executar a suíte de testes unitários e de integração:
 ```bash
-python -m testes.teste_pipeline
+python -m tests.test_pipeline
 ```
 As validações incluem:
 
