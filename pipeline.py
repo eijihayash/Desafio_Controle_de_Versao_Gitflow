@@ -48,7 +48,7 @@ class Pipeline:
 
             # CONTRIBUIÇÃO BRUNO ( padroniza nome das colunas para minúsculo)
             print("Padronizando nomes das colunas para minúsculo...")
-            df.columns = df.columns.str.lower 
+            df.columns = df.columns.str.lower()
             
             # Exemplo de transformação: Remover duplicatas e valores nulos
             df_limpo = df.drop_duplicates().dropna(how='all')
